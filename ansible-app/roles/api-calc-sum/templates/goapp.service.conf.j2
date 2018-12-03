@@ -1,0 +1,11 @@
+[Unit]
+Description=goapp
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/srv/goapp-go/main
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+server {
+
+	listen 80;
+
+
+	location / {
+		root /srv/goapp-web;
+	}
+
+	location /api/sum {
+	proxy_pass http://localhost:8080/sum;
+	}
+
+	location /api/diff {
+	include fastcgi_params;
+	fastcgi_param SCRIPT_FILENAME /srv/goapp-php/index.php;
+	fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+	}
+}

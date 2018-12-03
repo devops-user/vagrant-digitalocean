@@ -1,0 +1,5 @@
+---
+  - name: Create site site http
+    template: src=site.http.conf.j2 dest=/etc/nginx/sites-enabled/site.http.conf owner=root group=root mode=0644
+    notify: restart nginx
+  - meta: flush_handlers

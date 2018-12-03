@@ -1,0 +1,22 @@
+---
+ - name: Installing golang
+   apt: name=golang state=present
+
+ - name: Deploy goapp-go
+   git: repo=https://github.com/devops-user/goapp-go dest=/srv/goapp-go
+
+ - name: Delete git directory
+   file: path=/srv/goapp-go/.git state=absent
+
+ - name: Build go Application
+   shell: go build /srv/goapp-go/main.go
+   args:
+     chdir: /srv/goapp-go/
+     creates: main
+
+ - name: Create systemd goapp.service
+   template: src=goapp.service.conf.j2 dest=/etc/systemd/system/goapp.service
+
+ - name: Start goapp.service
+   shell: systemctl start goapp.service
+   notify: restart goapp

@@ -1,0 +1,9 @@
+---
+ - name: Installing git
+   apt: name=git state=present
+
+ - name: Deploy goapp-web
+   git: repo=https://github.com/devops-user/goapp-web dest=/srv/goapp-web
+
+ - name: Delete git directory
+   file: path=/srv/goapp-web/.git state=absent

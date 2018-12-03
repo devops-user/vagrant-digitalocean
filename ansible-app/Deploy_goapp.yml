@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+   - nginx
+   - php-fpm
+   - letsencrypt
+   - api-web
+   - api-calc-sum
+   - api-calc-diff

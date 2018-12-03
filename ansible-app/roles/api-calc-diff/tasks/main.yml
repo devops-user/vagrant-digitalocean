@@ -1,0 +1,8 @@
+---
+ - name: Deploy goapp-php
+   git: repo=https://github.com/devops-user/goapp-php dest=/srv/goapp-php
+   notify: restart nginx
+
+ - name: Delete git directory
+   file: path=/srv/goapp-php/.git state=absent
+
